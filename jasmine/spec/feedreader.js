@@ -15,44 +15,66 @@ $(function() {
     */
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
+         * allFeeds variable has been defined and that it is not empty.
+         * When you change allFeeds in app.js to be undefined or an empty array and refresh the page - 
+         * you get spec failure!
+         * When allFeeds has at least 1 element - pass!
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
-
-        /* TODO: Write a test that loops through each feed
+        /* Test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+        it('URLs are defined and not empty', function() {
 
+            for (let elem of allFeeds) {
+                expect(elem.url).toBeDefined();
+                expect(elem.url).not.toBe('');
+            }
+        });
 
-        /* TODO: Write a test that loops through each feed
+        /* Test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it('names are defined and not empty', function() {
+
+            for (let elem of allFeeds) {
+                expect(elem.name).toBeDefined();
+                expect(elem.name).not.toBe('');
+            }
+        });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
+    describe('The menu', function() {
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
+        /* Test that ensures the menu element is hidden by default.
          */
+        it('menu hidden by default', function() {
+            let elBody = document.querySelector('body');
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
+            expect(elBody).toHaveClass('menu-hidden');
+        });
+
+         /* Test that ensures the menu changes visibility when the menu icon is clicked. 
+          * This test has two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        it('menu changes visibility when menu icon is clicked', function() {
+            let elBody = document.querySelector('body');
+            let elMenu = document.querySelector('.menu-icon-link');
+            elMenu.click();
+            expect(elBody).not.toHaveClass('menu-hidden');
+            elMenu.click();
+            expect(elBody).toHaveClass('menu-hidden');
+       });
+    });
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
