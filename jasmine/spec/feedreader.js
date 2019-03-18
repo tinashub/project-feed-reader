@@ -29,7 +29,6 @@ $(function() {
          * and that the URL is not empty.
          */
         it('URLs are defined and not empty', function() {
-
             for (let elem of allFeeds) {
                 expect(elem.url).toBeDefined();
                 expect(elem.url).not.toBe('');
@@ -41,7 +40,6 @@ $(function() {
          * and that the name is not empty.
          */
         it('names are defined and not empty', function() {
-
             for (let elem of allFeeds) {
                 expect(elem.name).toBeDefined();
                 expect(elem.name).not.toBe('');
@@ -55,7 +53,6 @@ $(function() {
          */
         it('menu hidden by default', function() {
             let elBody = document.querySelector('body');
-
             expect(elBody).toHaveClass('menu-hidden');
         });
 
@@ -79,47 +76,46 @@ $(function() {
          * there is at least a single .entry element within the .feed container.
          * loadFeed() is asynchronous, so this test require beforeEach and done().
          */
-		beforeEach(function(done) {
-			loadFeed(0, function() {
-				done();
-			});
-		});
+    		beforeEach(done => {
+      			loadFeed(0, function() {
+        				done();
+      			});
+    		});
 
-		it('at least one entry exists upon initial load', function() {
-
-			let divFeed = document.querySelector('.feed');
-			let arrayEntries = divFeed.getElementsByTagName('article');
-
-			expect(arrayEntries.length).not.toBe(0);
-		});
+    		it('at least one entry exists upon initial load', function() {
+      			let divFeed = document.querySelector('div.feed');
+      			let arrayEntries = divFeed.querySelectorAll('.entry');
+      			expect(arrayEntries.length).not.toBe(0);
+    		});
     });
 
     // Test suite to check the content changes with the feed
     describe('New Feed Selection', function() {
-    	/* Test that ensures when a new feed is loaded
+    	  /* Test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
-         /* Declaring variables to store content to compare */
+        /* Declaring variables to store content to compare */
         let initialContent = "";
         let newContent = "";
         
         /* Load initial feed and when completed go on */
-        beforeAll(function(done) {
+        beforeAll(done => {
             loadFeed(0, function() {
-              done();
+                done();
             });
         });
 
-        beforeEach(function(done) {
-        	/* Get initial content upon initial load */
+        beforeEach(done => {
+        	  /* Get initial content upon initial load */
             initialContent = document.querySelector('div.feed').innerHTML;
+            /* Load new feed and when completed go on */
             loadFeed(2, function() {
-              done();
+                done();
             });
         });
 
         it('new feed loaded changes the content', function() {
-        	/* Get new content after new load is complete */
+        	  /* Get new content after new load is complete */
             newContent = document.querySelector('div.feed').innerHTML;
             expect(initialContent === newContent).toBe(false);
         });
