@@ -12,7 +12,9 @@ Feed Reader Testing Project tests the Feed Reader App, using Jasmine. All the te
 
 ## Instructions
 
-Please download the complete app including index.html file and folders css, fonts, jasmine with spec subfolder and js. The file feedreader.js contains the tests.
+Please download the app from https://github.com/tinashub/project-feed-reader. The complete app includes index.html file and folders css, fonts, js and jasmine with spec subfolder. The file feedreader.js contains the tests. 
+
+To run the app, double-click index.html.
 
 You have the explanatory comments in the feedreader.js to perform changes of conditions and check test success or fail.
 
